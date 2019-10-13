@@ -1,0 +1,12 @@
+version: "3" # docker version
+
+services:
+  app: # Service called 'app'
+    build: # Build section for configuration
+      context: . # Context directory. '.' is for current directory.
+    ports: # Ports configuration
+      - "8020:8000" # Outside and Docker Image Port
+    volumes: # Map Volume from Outside to the Docker Container
+      - ./app:/app
+    command: > # Command to run app in our container
+      sh -c "python manage.py runserver 0.0.0.0:8020" # Run command using shell - django

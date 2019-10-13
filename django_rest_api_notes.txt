@@ -4,8 +4,9 @@ Source: https://www.udemy.com/course/django-python-advanced
 Requirements:
         Python version 3.7
         Docker
-        Travis CI - automate testing and linting
-        Postgre - production grade database
+        Docker Compose : easily runs docker from our project location. helps to manage different services.
+        Travis CI : automate testing and linting
+        Postgre : production grade database
 
 git clone git@github.com:ajangelam/recipe-app-api.git
 cd ~/tutorials/
@@ -15,6 +16,7 @@ cd ~/tutorials/
  - Serializers : to provide validations to our requests APIs and help convert json objects to django database models
  - Unit Tests : checks that your code works. Steps: 1) Setup 2) Execution 3) Assert.
  - Alpine : lighter version in docker
+ -
 
  * URLS
  - Package Manager (Python) : https://pypi.org
@@ -41,6 +43,31 @@ cd ~/tutorials/
  - Run docker file
      cd ~/tutorials/recipe-app-api
      docker build .
+
+* Docker Compose Setup
+ - docker-compose.yml
+        version: "3" # docker version
+
+        services:
+          app: # Service called 'app'
+            build: # Build section for configuration
+              context: . # Context directory. '.' is for current directory.
+            ports: # Ports configuration
+              - "8020:8000" # Outside and Docker Image Port
+            volumes: # Map Volume from Outside to the Docker Container
+              - ./app:/app
+            command: > # Command to run app in our container
+              sh -c "python manage.py runserver 0.0.0.0:8020" # Run command using shell - django
+ - Run docker compose build
+        docker-compose build
+
+* Install Django Admin in Docker Container
+  - Run service
+     Usage: docker-compose run <SERVICE_NAME> <COMMANDS_EXECUTED_IN_CONTAINER>
+     Example: docker-compose run app sh -c "django-admin.py startproject app ."
+  - Shell Command for Django Admin:
+    "django-admin.py startproject app ."
+        django-admin.py startproject app # Runs django admin commands from requirements:Django then startproject command and start new project called 'app' in the current location/directory.
 
 * Requirements Setup
 requirements.txt
