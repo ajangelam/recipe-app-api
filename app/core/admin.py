@@ -8,6 +8,8 @@ from django.utils.translation import gettext as _
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
     list_display = ['email', 'name']
+
+    # Field sets for edit user page.
     fieldsets = (
         (
             None,
@@ -25,6 +27,17 @@ class UserAdmin(BaseUserAdmin):
             _('Important dates'),
             {'fields': ('last_login',)}
         )
+    )
+
+    # Field sets for add user page.
+    add_fieldsets = (
+        (
+            None,
+            {
+                'classes': ('wide',),
+                'fields': ('email', 'password1', 'password2')
+            }
+        ),
     )
 
 
