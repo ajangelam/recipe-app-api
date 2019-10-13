@@ -1,5 +1,5 @@
-from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
 from django.urls import reverse
 
 
@@ -39,3 +39,14 @@ class AdminSiteTests(TestCase):
         # Check if response contains items
         self.assertContains(response, self.user.name)
         self.assertContains(response, self.user.email)
+
+    def test_user_change_page(self):
+        """
+        Tests that the user edit page works.
+        """
+        # Generate url /admin/core/user/<id>
+        url = reverse('admin:core_user_change', args=[self.user.id])
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
