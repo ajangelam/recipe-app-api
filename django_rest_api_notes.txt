@@ -22,6 +22,7 @@ cd ~/tutorials/
  - Package Manager (Python) : https://pypi.org
  - Docker : https://hub.docker.com/
  - Travis CI : https://travis-ci.org
+ - Django Docs : https://docs.djangoproject.com/en/2.1/
 
 * Docker Setup
  - Dockerfile
@@ -100,4 +101,24 @@ requirements.txt
         djangorestframework>=3.9.0,<3.10.0
         flake8>=3.6.0,<3.7.0 # Linting tool. Config is in <WORKING_DIR>/.flake8
 
-d
+* Other
+ - **extra_fields : Take any function argument fields that are passed which are not part of the arguments declared.
+
+* Django in Docker
+ - All commands in format
+  docker-compose run app sh -c "python manage.py <CMD_HERE>"
+ - Run migration
+   Usage:
+        python manage.py makemigrations <APP_NAME>
+   Example:
+        docker-compose run app sh -c "python manage.py makemigrations core"
+
+* Most used commands
+ - Docker Build
+ docker-compose build
+
+ - Test
+ docker-compose run app sh -c "python manage.py test && flake8"
+
+ - Core Migrations
+ docker-compose run app sh -c "python manage.py makemigrations core"
