@@ -23,6 +23,8 @@ cd ~/tutorials/
  - Docker : https://hub.docker.com/
  - Travis CI : https://travis-ci.org
  - Django Docs : https://docs.djangoproject.com/en/2.1/
+ - Django Admin Docs :
+ https://docs.djangoproject.com/en/2.1/ref/contrib/admin/
 
 * Docker Setup
  - Dockerfile
