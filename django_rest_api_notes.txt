@@ -69,6 +69,8 @@ cd ~/tutorials/
   - Shell Command for Django Admin:
     "django-admin.py startproject app ."
         django-admin.py startproject app # Runs django admin commands from requirements:Django then startproject command and start new project called 'app' in the current location/directory.
+  - Create new app called 'core' in django directory
+   docker-compose run app sh -c "python manage.py startapp core"
 
 * Travis CI Setup
  - .travis.yml
@@ -87,6 +89,7 @@ cd ~/tutorials/
 - Every push in repo will run travis build script
 
 * Run Unit test in Docker
+ - it looks for all files/modules beginning with "test".
  docker-compose run app sh -c "python manage.py test -v"
  - with linting flake8 tool
          docker-compose run app sh -c "python manage.py test && flake8"
@@ -96,3 +99,5 @@ requirements.txt
         Django>=2.1.3,<2.2.0 # Install django that is greater than or equals to 2.1.3 BUT less than 2.2.0
         djangorestframework>=3.9.0,<3.10.0
         flake8>=3.6.0,<3.7.0 # Linting tool. Config is in <WORKING_DIR>/.flake8
+
+d
