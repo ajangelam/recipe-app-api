@@ -1,0 +1,48 @@
+* Recipe App
+Source: https://www.udemy.com/course/django-python-advanced
+
+Requirements:
+        Python version 3.7
+        Docker
+        Travis CI - automate testing and linting
+        Postgre - production grade database
+
+git clone git@github.com:ajangelam/recipe-app-api.git
+cd ~/tutorials/
+
+* Terms
+ - Viewsets : structure of API, provide necessary endpoints for managing objects
+ - Serializers : to provide validations to our requests APIs and help convert json objects to django database models
+ - Unit Tests : checks that your code works. Steps: 1) Setup 2) Execution 3) Assert.
+ - Alpine : lighter version in docker
+
+ * URLS
+ - Package Manager (Python) : https://pypi.org
+ - Docker : https://hub.docker.com/
+
+* Docker Setup
+ - Dockerfile
+        FROM python:3.7-alpine # FROM <IMAGE_NAME>:<TAG_NAME>
+        MAINTAINER Angela Misa # MAINTAINER <MAINTANER_NAME>
+
+        # ENVIRONMENT VARIABLES
+        ENV PYTHONUNBUFFERED 1 # UNBUFFERED MODE, DOESNT ALLOW BUFFER OUTPUTS AND JUST PRINT THEM DIRECTLY
+
+        # INSTALL REQUIREMENTS
+        COPY ./requirements.txt /requirements.txt # COPY REQUIREMENTS INSIDE DOCKER IMAGE
+        RUN pip install -r /requirements.txt
+
+        RUN mkdir /app
+        WORKDIR /app # SET AS DEFAULT DIRECTORY
+        COPY ./app /app # COPY APP DIRECTORY INSIDE DOCKER IMAGE
+
+        RUN adduser -D user # ADD USER
+        USER user
+ - Run docker file
+     cd ~/tutorials/recipe-app-api
+     docker build .
+
+* Requirements Setup
+requirements.txt
+        Django>=2.1.3,<2.2.0 # Install django that is greater than or equals to 2.1.3 BUT less than 2.2.0
+        djangorestframework>=3.9.0,<3.10.0
